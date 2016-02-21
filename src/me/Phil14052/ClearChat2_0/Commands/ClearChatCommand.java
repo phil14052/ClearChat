@@ -214,21 +214,35 @@ public class ClearChatCommand implements CommandExecutor{
 				}
 				else if(args[0].equalsIgnoreCase("personal")){
 					if(sender instanceof Player){
-						
 						Player p = (Player) sender;
-						
 						if(plugin.hasPermisson(p, "clearchat.clear.personal", true)){
-							for(int i=1; i<plugin.getConfig().getInt("Lines.personal"); i++){
-								p.sendMessage("  ");
+							if(args.length < 2){
+								for(int i=1; i<plugin.getConfig().getInt("Lines.personal"); i++){
+									p.sendMessage("  ");
+								}
+								p.sendMessage(plugin.lang.getString("PersonalClear")
+										.replaceAll("%PlayerName%", p.getName())
+										.replaceAll("%PlayerDisplayName%", p.getDisplayName())
+										.replaceAll("%World%", p.getWorld().toString())
+										.replaceAll("%Prefix%", plugin.getPrefix())
+										.replaceAll("&","§"));
+								
+							}else if(args[1].equalsIgnoreCase("-m")){
+								for(int i=1; i<plugin.getConfig().getInt("Lines.personal"); i++){
+									p.sendMessage("  ");
+								}
+							}else{
+								sender.sendMessage("    ");
+								String m = args[1];
+								if(m.contains("\\")) return false;
+								sender.sendMessage(plugin.lang.getString("UnknownArgument")
+										.replaceAll("%Argument%", m)
+										.replaceAll("%Prefix%", plugin.getPrefix())
+										.replaceAll("&","§"));
 							}
-							p.sendMessage(plugin.lang.getString("PersonalClear")
-									.replaceAll("%PlayerName%", p.getName())
-									.replaceAll("%PlayerDisplayName%", p.getDisplayName())
-									.replaceAll("%World%", p.getWorld().toString())
-									.replaceAll("%Prefix%", plugin.getPrefix())
-									.replaceAll("&","§"));
-							
 						}
+						
+						
 					}else{
 						sender.sendMessage(plugin.lang.getString("InGameOnly").replaceAll("&","§"));
 					}
@@ -237,10 +251,10 @@ public class ClearChatCommand implements CommandExecutor{
 					if(sender instanceof Player){
 						Player p = (Player) sender;
 						if(plugin.hasPermisson(p, "clearchat.mutechat", true)){
-							plugin.api.toggleGlobalMute();
+							ClearChat2_0.getAPI().toggleGlobalMute();
 						}
 					}else{
-						plugin.api.toggleGlobalMute();
+						ClearChat2_0.getAPI().toggleGlobalMute();
 					}
 				}
 				
@@ -249,7 +263,7 @@ public class ClearChatCommand implements CommandExecutor{
 					if(sender instanceof Player){
 						Player p = (Player) sender;
 						if(plugin.hasPermisson(p, "clearchat.mutepersonal", true)){
-							plugin.api.togglePlayerRecevingChat(p);
+							ClearChat2_0.getAPI().togglePlayerRecevingChat(p);
 						}
 					}else{
 						sender.sendMessage(plugin.lang.getString("InGameOnly").replaceAll("&","§"));

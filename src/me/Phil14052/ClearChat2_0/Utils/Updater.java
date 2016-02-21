@@ -28,8 +28,8 @@ public class Updater extends YamlConfiguration{
 				+ "\n InGamePlayersOnly: Only players will get there chat cleared when the autoclear goes on."
 				+ "\n\nDisplayMessageAfterClear only: %Newline%");
 		gc.options().copyHeader();
-		gc.addDefault("HelpMenu.needPermission", true);
-		gc.addDefault("InfoMenu.infoCommandToClearChatCommand", true);
+		gc.addDefault("HelpMenu.needPermission", false);
+		gc.addDefault("InfoMenu.infoCommandToClearChatCommand", false);
 		gc.addDefault("Lines.global", 100);
 		gc.addDefault("Lines.personal", 100);
 		gc.addDefault("Lines.join", 100);

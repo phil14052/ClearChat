@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import me.Phil14052.ClearChat2_0.Api.Api;
+import me.Phil14052.ClearChat2_0.Api.CCApi;
 import me.Phil14052.ClearChat2_0.Commands.ClearChatCommand;
 import me.Phil14052.ClearChat2_0.Events.ChatEvent;
 import me.Phil14052.ClearChat2_0.Events.PlayerJoin;
@@ -31,7 +33,7 @@ public class ClearChat2_0 extends JavaPlugin{
 	public boolean globalMute = false;
 	
 	public List<UUID> reciveChat = new ArrayList<UUID>();
-	public API api;
+	private static Api api;
 	
 	public int AutoBroadCast;
 	public int seconds;
@@ -44,7 +46,6 @@ public class ClearChat2_0 extends JavaPlugin{
 	public void onEnable() {
 		log = getLogger();
 	    plugin = this;
-	    api = new API();
         registerEvents();
         registerCommands();
         saveConfigs();
@@ -164,9 +165,14 @@ public class ClearChat2_0 extends JavaPlugin{
 		getCommand("clearchat").setExecutor(new ClearChatCommand());
 	}
 
-	public static API getAPI(){
-		return getInstance().api;
+	public static Api getAPI(){
+		if(api == null){
+			api = new CCApi();
+		}
+		return api;
 	}
+	
+	
 	
 	public String getLangWithPH(String path){
 		String message = plugin.lang.getString(path);
