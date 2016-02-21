@@ -1,0 +1,43 @@
+#Default Language file!
+prefix: '&8[&bClearChat&8]'
+
+GlobalClear: '&3The chat was cleared by %PlayerDisplayName%'
+AnonymousGlobalClear: '&3The chat was cleared'
+PersonalClear: '&3Your chat was cleared'
+ReloadMessage: '&a&oReload complete!'
+MuteEnabled: '&cThe chat is now muted!'
+MuteDisabled: '&aThe chat is not muted anymore!'
+DeniedToChat: '&c&lSorry the chat is disabled.'
+InGameOnly: '&c&lSorry only ingame players can use this command!'
+DisableReceivingChat: '&3You will now not receive chat messages!'
+EnableReceivingChat: '&3You will now receive chat messages!'
+CantReceiveChat: '&cSorry &a%target%&c has disabled his/her chat'
+VersionMessage: '&3You are using version &b%Version% &3of the &b%Prefix% &3plugin'
+#Here you put color codes
+#All the messages you cant customize in here will have these colors
+MainColor: '&3'
+SecondaryColor: '&b'
+
+#Helpmenu
+HelpMenu:
+  CommandDescription:
+    mainCommand: '&cMain Command'
+    helpCommand: '&cShows this help menu'
+    globalClear: '&cClears the global chat!'
+    personalClear: '&cClears the your chat!'
+    reload: '&cReloads the plgin'
+    muteChat: '&cToggles mute in chat'
+    mutePersonal: '&cToggles mute in your chat'
+    versionCommand: '&cShows the plugin version!'
+  Tips:
+    Prefix: '&lTip: '
+    tipOne: '&b() = Required [] = Optional'
+    tipTwo: '&bYou can hover and click on the commands in the help menu to get a description of the command or to get it down in the chat box!'
+  Headers:
+    top: '&m-------------------------------------'
+    helpMenuInfo: '%Prefix% &3 Help menu!'
+    buttom: '&m-------------------------------------'
+#Please do not use %PlayerName%,%PlayerDisplayName% or %World% for UnknownArgument
+UnknownArgument: '&c&lSorry &a&l%Argument% &c&lis not a argument'
+
+NoPermission: '&c&lYou do not have the permission %Permission%'

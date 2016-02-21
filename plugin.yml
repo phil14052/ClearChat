@@ -1,0 +1,9 @@
+name: ClearChat
+main: me.Phil14052.ClearChat2_0.ClearChat2_0
+version: 2.0.6
+author: phil14052
+description: This plugin adds simple way to clear the chat!
+commands:
+  clearchat:
+    description: ClearChat Plugin Main Command
+    aliases: [cc]
