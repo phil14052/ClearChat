@@ -13,6 +13,10 @@ import me.Phil14052.ClearChat2_0.Events.PlayerJoin;
 import me.Phil14052.ClearChat2_0.Events.ReciveChatEvent;
 import me.Phil14052.ClearChat2_0.Utils.Config;
 import me.Phil14052.ClearChat2_0.Utils.Updater;
+import me.Phil14052.ClearChat2_0.Utils.JSON.JsonSender;
+import me.Phil14052.ClearChat2_0.Utils.JSON.JsonSender_v1_10_R1;
+import me.Phil14052.ClearChat2_0.Utils.JSON.JsonSender_v1_9_R1;
+import me.Phil14052.ClearChat2_0.Utils.JSON.JsonSender_v1_9_R2;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -41,6 +45,7 @@ public class ClearChat2_0 extends JavaPlugin{
 	public int hours;
 	public int time;
 	public Logger log;
+	private JsonSender js;
 	
 	
 	public void onEnable() {
@@ -59,7 +64,29 @@ public class ClearChat2_0 extends JavaPlugin{
         	log.info("Total Autoclear time = " + time);
         	plugin.AutoClearStart();
         }
-        
+
+		if(plugin.getBukkitVersion().startsWith("v1_10")){
+			js = new JsonSender_v1_10_R1();
+		}
+		if(plugin.getBukkitVersion().startsWith("v1_9_R2")){
+			js = new JsonSender_v1_9_R2();
+		}
+		if(plugin.getBukkitVersion().startsWith("v1_9_R1")){
+			js = new JsonSender_v1_9_R1();
+		}
+	}
+	public String getBukkitVersion(){
+		String version = "";
+		try {
+		     version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+		} catch (ArrayIndexOutOfBoundsException ex) {
+		ex.printStackTrace();
+		}
+		return version;
+	}
+	
+	public JsonSender getJsonSender(){
+		return js;
 	}
 	
 	private void registerEvents() {
@@ -182,6 +209,8 @@ public class ClearChat2_0 extends JavaPlugin{
 		message = message.replaceAll("%Prefix%",plugin.getPrefix());
 		return message;
 	}
+	
+	
 	
 	public static ClearChat2_0 getInstance() {
 		return plugin;
