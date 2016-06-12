@@ -43,21 +43,22 @@ public class ClearChatCommand implements CommandExecutor{
 					sender.sendMessage("    ");
 					sender.sendMessage(plugin.color("MainColor") + "§m-------------------------------------");
 					sender.sendMessage("    ");
-					new FancyMessage(plugin.color("SecondaryColor") + " " + plugin.getPrefix() + " " + plugin.color("MainColor") + "Version: " + plugin.color("SecondaryColor") + plugin.getPluginVersion())
-					.tooltip(plugin.color("SecondaryColor") + "§oBy Phil14052")
-					.send(sender);
+					
+					FancyMessage fm = new FancyMessage(plugin.color("SecondaryColor") + " " + plugin.getPrefix() + " " + plugin.color("MainColor") + "Version: " + plugin.color("SecondaryColor") + plugin.getPluginVersion())
+					.tooltip(plugin.color("SecondaryColor") + "§oBy Phil14052");
+					plugin.getJsonSender().sendJson(sender, fm);
 					sender.sendMessage("    ");
-					new FancyMessage(plugin.color("MainColor") + "Want help? Do ")
+					FancyMessage fm2 = new FancyMessage(plugin.color("MainColor") + "Want help? Do ")
 					.then(plugin.color("SecondaryColor") + "§o/clearchat help")
 					.command("/clearchat help")
-					.tooltip(ChatColor.RED + "Click here!")
-					.send(sender);
+					.tooltip(ChatColor.RED + "Click here!");
+					plugin.getJsonSender().sendJson(sender, fm2);
 					if(sender instanceof Player){
-						new FancyMessage(plugin.color("MainColor") + "Or go on the plugin page ")
+						FancyMessage fm3 = new FancyMessage(plugin.color("MainColor") + "Or go on the plugin page ")
 						.then(plugin.color("SecondaryColor") + "§oClick here")
 						.link("http://goo.gl/5MA6Zl")
-						.tooltip(ChatColor.RED + "Click here!")
-						.send(sender);	
+						.tooltip(ChatColor.RED + "Click here!");
+						plugin.getJsonSender().sendJson(sender, fm3);
 					}
 					sender.sendMessage("    ");
 					sender.sendMessage(plugin.color("MainColor") + "§m-------------------------------------");
@@ -82,45 +83,38 @@ public class ClearChatCommand implements CommandExecutor{
 						sender.sendMessage("    ");
 						sender.sendMessage(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.Headers.top"));
 						sender.sendMessage("    ");
-						new FancyMessage(plugin.color("SecondaryColor") + " " + plugin.getLangWithPH("HelpMenu.Headers.helpMenuInfo"))
-						.send(sender);
+						plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("SecondaryColor") + " " + plugin.getLangWithPH("HelpMenu.Headers.helpMenuInfo")));
 						sender.sendMessage("    ");
-						new FancyMessage(plugin.color("MainColor") + " /clearchat").tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.mainCommand")).suggest("/clearchat").send(sender);
-						new FancyMessage(plugin.color("MainColor") + " /clearchat help").tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.helpCommand")).suggest("/clearchat help").send(sender);
+						plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat").tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.mainCommand")).suggest("/clearchat"));
+						plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat help").tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.helpCommand")).suggest("/clearchat help"));
 						if(sender.hasPermission("clearchat.clear.global")){
-							new FancyMessage(plugin.color("MainColor") + " /clearchat global [-s,-a]")
+							plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat global [-s,-a]")
 							.tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.globalClear"))
-							.suggest("/clearchat global")
-							.send(sender);
+							.suggest("/clearchat global"));
 						}
 						if(sender.hasPermission("clearchat.clear.personal")){
-							new FancyMessage(plugin.color("MainColor") + " /clearchat personal")
+							plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat personal")
 							.tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.personalClear"))
-							.suggest("/clearchat personal")
-							.send(sender);
+							.suggest("/clearchat personal"));
 						}
 						if(sender.hasPermission("clearchat.reload")){
-							new FancyMessage(plugin.color("MainColor") + " /clearchat reload")
+							plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat reload")
 							.tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.reload"))
-							.suggest("/clearchat reload")
-							.send(sender);
+							.suggest("/clearchat reload"));
 						}
 						if(sender.hasPermission("clearchat.mutechat")){
-							new FancyMessage(plugin.color("MainColor") + " /clearchat mutechat")
+							plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat mutechat")
 							.tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.muteChat"))
-							.suggest("/clearchat mutechat")
-							.send(sender);
+							.suggest("/clearchat mutechat"));
 						}
 						if(sender.hasPermission("clearchat.mutepersonal")){
-							new FancyMessage(plugin.color("MainColor") + " /clearchat mutepersonal")
+							plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat mutepersonal")
 							.tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.mutePersonal"))
-							.suggest("/clearchat mutepersonal")
-							.send(sender);	
+							.suggest("/clearchat mutepersonal"));
 						}
-						new FancyMessage(plugin.color("MainColor") + " /clearchat version")
+						plugin.getJsonSender().sendJson(sender, new FancyMessage(plugin.color("MainColor") + " /clearchat version")
 						.tooltip(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.CommandDescription.versionCommand"))
-						.suggest("/clearchat version")
-						.send(sender);
+						.suggest("/clearchat version"));
 						
 						sender.sendMessage("    ");
 						sender.sendMessage(plugin.color("SecondaryColor") + plugin.getLangWithPH("HelpMenu.Tips.Prefix") + plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.Tips.tipOne"));
@@ -128,6 +122,7 @@ public class ClearChatCommand implements CommandExecutor{
 							sender.sendMessage(plugin.color("SecondaryColor") + plugin.getLangWithPH("HelpMenu.Tips.Prefix") + plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.Tips.tipTwo"));
 						}
 						sender.sendMessage(plugin.color("MainColor") + plugin.getLangWithPH("HelpMenu.Headers.buttom"));
+						return true;
 					}	
 				}
 				else if(args[0].equalsIgnoreCase("reload")){
